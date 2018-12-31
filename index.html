@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+<script>
+    //array to hold key presses (in order)
+    const pressed = [];
+    //variable holding the code
+    var up = "ArrowUp"
+    var down = "ArrowDown"
+    var left = "ArrowLeft"
+    var right = "ArrowRight"
+    var B = "b"
+    var A = "a"
+    var start = "Enter"
+    const secretCode = `${up}${up}${down}${down}${left}${right}${left}${right}${B}${A}${start}`;
+    //listen for key
+    window.addEventListener('keyup', (e) => {
+        console.log(e.key);
+        //append key press to 'pressed' array
+        pressed.push(e.key);
+        pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+        if(pressed.join('').includes(secretCode)) {
+            console.log('UNLIMITED KEY PRESSES UNLOCKED');
+            cornify_add();
+        }
+        console.log(pressed);
+    })
+</script>
+</body>
+</html>
